@@ -1,0 +1,11 @@
+{
+  "name": "tdd-guard-superpowers",
+  "description": "Auto-configures TDD enforcement hooks using tdd-guard-superpowers CLI",
+  "version": "1.0.0",
+  "author": {
+    "name": "rakoort"
+  },
+  "repository": "https://github.com/rakoort/tdd-guard-superpowers",
+  "license": "MIT",
+  "keywords": ["tdd", "testing", "superpowers", "hooks", "enforcement"]
+}
