@@ -207,7 +207,7 @@ describe('generateDynamicContext', () => {
       const result = generateContextResult(editOperation)
 
       // Verify order by checking indexOf
-      const systemIndex = result.indexOf('# TDD-Guard')
+      const systemIndex = result.indexOf('# TDD Guard (Superpowers)')
       const rulesIndex = result.indexOf('## TDD Fundamentals')
       const fileRulesIndex = result.indexOf('## File Type Specific Rules')
       const operationIndex = result.indexOf('## Analyzing Edit Operations')
