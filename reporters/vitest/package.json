@@ -1,5 +1,5 @@
 {
-  "name": "tdd-guard-vitest",
+  "name": "tdd-guard-superpowers-vitest",
   "version": "0.1.6",
   "description": "Vitest reporter for TDD Guard",
   "author": "Nizar Selander",

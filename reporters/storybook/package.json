@@ -1,5 +1,5 @@
 {
-  "name": "tdd-guard-storybook",
+  "name": "tdd-guard-superpowers-storybook",
   "version": "0.1.0",
   "description": "Storybook test-runner reporter for TDD Guard",
   "author": "Tony Kornmeier",
