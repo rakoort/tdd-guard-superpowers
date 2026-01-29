@@ -460,12 +460,12 @@ describe('Config', () => {
   })
 
   describe('linterType', () => {
-    test('returns undefined when no configuration provided', () => {
+    test('returns biome as default when no configuration provided', () => {
       delete process.env.LINTER_TYPE
 
       const config = new Config()
 
-      expect(config.linterType).toBeUndefined()
+      expect(config.linterType).toBe('biome')
     })
 
     test('returns eslint when LINTER_TYPE env var is set to eslint', () => {
@@ -504,12 +504,12 @@ describe('Config', () => {
       expect(config.linterType).toBe('eslint')
     })
 
-    test('returns undefined for empty string env var', () => {
+    test('returns biome for empty string env var', () => {
       process.env.LINTER_TYPE = ''
 
       const config = new Config()
 
-      expect(config.linterType).toBeUndefined()
+      expect(config.linterType).toBe('biome')
     })
 
     test('returns future linter types when configured', () => {

@@ -11,6 +11,7 @@ const INSTRUCTIONS_FILENAME = 'instructions.md'
 
 export const DEFAULT_MODEL_VERSION = 'claude-sonnet-4-5-20250514'
 export const DEFAULT_CLIENT: ClientType = 'sdk'
+export const DEFAULT_LINTER_TYPE = 'biome'
 export const DEFAULT_DATA_DIR = path.join(
   '.claude',
   'tdd-guard-superpowers',
@@ -110,7 +111,8 @@ export class Config {
       return options.linterType?.toLowerCase()
     }
     const envValue = process.env.LINTER_TYPE?.toLowerCase()
-    return envValue && envValue.trim() !== '' ? envValue : undefined
+    if (envValue && envValue.trim() !== '') return envValue
+    return DEFAULT_LINTER_TYPE
   }
 
   private getModelVersion(options?: ConfigOptions): string {
