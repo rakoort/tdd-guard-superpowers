@@ -1,6 +1,6 @@
 import { Reporter, TestModule, TestCase, TestRunEndReason } from 'vitest/node'
 import type { SerializedError } from '@vitest/utils'
-import { Storage, FileStorage, Config } from 'tdd-guard'
+import { Storage, FileStorage, Config } from 'tdd-guard-superpowers'
 import { basename } from 'node:path'
 import type {
   CollectedModuleData,

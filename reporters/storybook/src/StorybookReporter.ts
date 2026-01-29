@@ -1,4 +1,4 @@
-import { Storage, FileStorage, Config } from 'tdd-guard'
+import { Storage, FileStorage, Config } from 'tdd-guard-superpowers'
 import type {
   TestContext,
   TestRunOutput,

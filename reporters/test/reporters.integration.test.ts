@@ -4,7 +4,7 @@ import { describe, it, expect, beforeAll } from 'vitest'
 import { mkdtempSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
-import { FileStorage, Config as TDDConfig } from 'tdd-guard'
+import { FileStorage, Config as TDDConfig } from 'tdd-guard-superpowers'
 import type { ReporterConfig, TestResultData, TestScenarios } from './types'
 
 // Extended test error type that includes Rust-specific fields
@@ -19,7 +19,6 @@ type TestError = {
   note?: string
 }
 import {
-  createJestReporter,
   createVitestReporter,
   createPhpunitReporter,
   createPytestReporter,
@@ -37,7 +36,6 @@ interface ReporterTestData {
 }
 
 type ReporterName =
-  | 'jest'
   | 'vitest'
   | 'phpunit'
   | 'pytest'
@@ -51,7 +49,6 @@ describe('Reporters', () => {
   // Run all reporters and collect their output before tests
   beforeAll(async () => {
     const reporters = [
-      createJestReporter(),
       createVitestReporter(),
       createPhpunitReporter(),
       createPytestReporter(),
@@ -75,7 +72,6 @@ describe('Reporters', () => {
   describe('Module Path Reporting', () => {
     describe('when assertions are passing', () => {
       const reporters: Array<{ name: ReporterName; expected: string }> = [
-        { name: 'jest', expected: 'single-passing.test.js' },
         { name: 'vitest', expected: 'single-passing.test.js' },
         { name: 'phpunit', expected: 'SinglePassingTest.php' },
         { name: 'pytest', expected: 'test_single_passing.py' },
@@ -92,7 +88,6 @@ describe('Reporters', () => {
 
     describe('when assertions are failing', () => {
       const reporters: Array<{ name: ReporterName; expected: string }> = [
-        { name: 'jest', expected: 'single-failing.test.js' },
         { name: 'vitest', expected: 'single-failing.test.js' },
         { name: 'phpunit', expected: 'SingleFailingTest.php' },
         { name: 'pytest', expected: 'test_single_failing.py' },
@@ -109,7 +104,6 @@ describe('Reporters', () => {
 
     describe('when import errors occur', () => {
       const reporters: Array<{ name: ReporterName; expected: string }> = [
-        { name: 'jest', expected: 'single-import-error.test.js' },
         { name: 'vitest', expected: 'single-import-error.test.js' },
         { name: 'phpunit', expected: 'SingleImportErrorTest.php' },
         { name: 'pytest', expected: 'test_single_import_error.py' },
@@ -131,7 +125,6 @@ describe('Reporters', () => {
   describe('Test Name Reporting', () => {
     describe('when assertions are passing', () => {
       const reporters: Array<{ name: ReporterName; expected: string }> = [
-        { name: 'jest', expected: 'should add numbers correctly' },
         { name: 'vitest', expected: 'should add numbers correctly' },
         { name: 'phpunit', expected: 'testShouldAddNumbersCorrectly' },
         { name: 'pytest', expected: 'test_should_add_numbers_correctly' },
@@ -154,7 +147,6 @@ describe('Reporters', () => {
 
     describe('when assertions are failing', () => {
       const reporters: Array<{ name: ReporterName; expected: string }> = [
-        { name: 'jest', expected: 'should add numbers correctly' },
         { name: 'vitest', expected: 'should add numbers correctly' },
         { name: 'phpunit', expected: 'testShouldAddNumbersCorrectly' },
         { name: 'pytest', expected: 'test_should_add_numbers_correctly' },
@@ -180,7 +172,6 @@ describe('Reporters', () => {
         name: ReporterName
         expected: string | undefined
       }> = [
-        { name: 'jest', expected: 'Module failed to load (Error)' },
         { name: 'vitest', expected: 'single-import-error.test.js' },
         { name: 'phpunit', expected: 'testShouldAddNumbersCorrectly' },
         {
@@ -208,7 +199,6 @@ describe('Reporters', () => {
   describe('Full Test Name Reporting', () => {
     describe('when assertions are passing', () => {
       const reporters: Array<{ name: ReporterName; expected: string }> = [
-        { name: 'jest', expected: 'Calculator should add numbers correctly' },
         {
           name: 'vitest',
           expected: 'Calculator > should add numbers correctly',
@@ -248,7 +238,6 @@ describe('Reporters', () => {
 
     describe('when assertions are failing', () => {
       const reporters: Array<{ name: ReporterName; expected: string }> = [
-        { name: 'jest', expected: 'Calculator should add numbers correctly' },
         {
           name: 'vitest',
           expected: 'Calculator > should add numbers correctly',
@@ -295,7 +284,6 @@ describe('Reporters', () => {
         name: ReporterName
         expected: string | undefined
       }> = [
-        { name: 'jest', expected: 'Module failed to load (Error)' },
         { name: 'vitest', expected: 'single-import-error.test.js' },
         {
           name: 'phpunit',
@@ -323,7 +311,6 @@ describe('Reporters', () => {
   describe('Test State Reporting', () => {
     describe('when assertions are passing', () => {
       const reporters: ReporterName[] = [
-        'jest',
         'vitest',
         'phpunit',
         'pytest',
@@ -342,7 +329,6 @@ describe('Reporters', () => {
 
     describe('when assertions are failing', () => {
       const reporters: ReporterName[] = [
-        'jest',
         'vitest',
         'phpunit',
         'pytest',
@@ -365,7 +351,6 @@ describe('Reporters', () => {
         name: ReporterName
         expected: string
       }> = [
-        { name: 'jest', expected: 'failed' },
         { name: 'vitest', expected: 'failed' },
         { name: 'phpunit', expected: 'failed' },
         { name: 'pytest', expected: 'failed' },
@@ -393,7 +378,6 @@ describe('Reporters', () => {
         name: ReporterName
         expected: string | string[]
       }> = [
-        { name: 'jest', expected: ['Expected: 6', 'Received: 5'] },
         {
           name: 'vitest',
           expected: 'expected 5 to be 6 // Object.is equality',
@@ -442,7 +426,6 @@ describe('Reporters', () => {
         name: ReporterName
         expected: string | undefined
       }> = [
-        { name: 'jest', expected: '6' },
         { name: 'vitest', expected: '6' },
         { name: 'phpunit', expected: undefined },
         { name: 'pytest', expected: undefined },
@@ -465,7 +448,6 @@ describe('Reporters', () => {
         name: ReporterName
         expected: string | undefined
       }> = [
-        { name: 'jest', expected: '5' },
         { name: 'vitest', expected: '5' },
         { name: 'phpunit', expected: undefined },
         { name: 'pytest', expected: undefined },
@@ -488,12 +470,6 @@ describe('Reporters', () => {
         name: ReporterName
         expected: string[]
       }> = [
-        {
-          name: 'jest',
-          expected: [
-            "Cannot find module './non-existent-module' from 'single-import-error.test.js'",
-          ],
-        },
         {
           name: 'vitest',
           expected: [
@@ -547,7 +523,6 @@ describe('Reporters', () => {
         name: ReporterName
         expected: string | undefined
       }> = [
-        { name: 'jest', expected: 'passed' },
         { name: 'vitest', expected: 'passed' },
         { name: 'phpunit', expected: 'passed' },
         { name: 'pytest', expected: undefined }, // TODO: Fix
@@ -570,7 +545,6 @@ describe('Reporters', () => {
         name: ReporterName
         expected: string | undefined
       }> = [
-        { name: 'jest', expected: 'failed' },
         { name: 'vitest', expected: 'failed' },
         { name: 'phpunit', expected: 'failed' },
         { name: 'pytest', expected: undefined }, // TODO: Fix
@@ -593,7 +567,6 @@ describe('Reporters', () => {
         name: ReporterName
         expected: string | undefined
       }> = [
-        { name: 'jest', expected: 'failed' },
         { name: 'vitest', expected: 'failed' },
         { name: 'phpunit', expected: 'failed' },
         { name: 'pytest', expected: undefined }, // TODO: Fix
@@ -644,7 +617,6 @@ describe('Reporters', () => {
     scenario: 'passingResults' | 'failingResults' | 'importErrorResults',
     extractor: (data: unknown) => T
   ): Record<ReporterName, T | undefined> {
-    const jest = reporterData.find((r) => r.name === 'JestReporter')
     const vitest = reporterData.find((r) => r.name === 'VitestReporter')
     const phpunit = reporterData.find((r) => r.name === 'PHPUnitReporter')
     const pytest = reporterData.find((r) => r.name === 'PytestReporter')
@@ -653,7 +625,6 @@ describe('Reporters', () => {
     const storybook = reporterData.find((r) => r.name === 'StorybookReporter')
 
     return {
-      jest: safeExtract(jest?.[scenario], extractor),
       vitest: safeExtract(vitest?.[scenario], extractor),
       phpunit: safeExtract(phpunit?.[scenario], extractor),
       pytest: safeExtract(pytest?.[scenario], extractor),

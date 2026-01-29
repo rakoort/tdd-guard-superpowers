@@ -1,4 +1,4 @@
-import type { Storage } from 'tdd-guard'
+import type { Storage } from 'tdd-guard-superpowers'
 
 export interface StorybookReporterOptions {
   storage?: Storage

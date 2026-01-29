@@ -11,7 +11,7 @@ import {
   isPassingTest,
   TestResult,
   Test,
-} from 'tdd-guard'
+} from 'tdd-guard-superpowers'
 import {
   testModule,
   failedTestCase,

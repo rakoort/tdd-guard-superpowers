@@ -22,7 +22,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "tdd-guard": "^1.1.0"
+    "tdd-guard-superpowers": "file:../../"
   },
   "peerDependencies": {
     "@storybook/test-runner": ">=0.19.0"

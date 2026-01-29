@@ -1,6 +1,11 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { StorybookReporter } from './StorybookReporter'
-import { MemoryStorage, FileStorage, Config, DEFAULT_DATA_DIR } from 'tdd-guard'
+import {
+  MemoryStorage,
+  FileStorage,
+  Config,
+  DEFAULT_DATA_DIR,
+} from 'tdd-guard-superpowers'
 import {
   createStoryContext,
   passedStoryContext,
