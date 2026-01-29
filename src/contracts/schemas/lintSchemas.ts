@@ -30,6 +30,23 @@ export const GolangciLintResultSchema = z.object({
   Issues: z.array(GolangciLintIssueSchema).optional(),
 })
 
+export const BiomeDiagnosticSchema = z.object({
+  category: z.string().optional(),
+  severity: z.string(),
+  description: z.string().optional(),
+  message: z.array(z.object({ content: z.string() })).optional(),
+  location: z
+    .object({
+      path: z.object({ file: z.string() }).optional(),
+      span: z.object({ start: z.number(), end: z.number() }).optional(),
+    })
+    .optional(),
+})
+
+export const BiomeResultSchema = z.object({
+  diagnostics: z.array(BiomeDiagnosticSchema),
+})
+
 export const LintIssueSchema = z.object({
   file: z.string(),
   line: z.number(),
@@ -56,6 +73,8 @@ export type ESLintResult = z.infer<typeof ESLintResultSchema>
 export type GolangciLintPosition = z.infer<typeof GolangciLintPositionSchema>
 export type GolangciLintIssue = z.infer<typeof GolangciLintIssueSchema>
 export type GolangciLintResult = z.infer<typeof GolangciLintResultSchema>
+export type BiomeDiagnostic = z.infer<typeof BiomeDiagnosticSchema>
+export type BiomeResult = z.infer<typeof BiomeResultSchema>
 export type LintData = z.infer<typeof LintDataSchema>
 export type LintIssue = z.infer<typeof LintIssueSchema>
 export type LintResult = z.infer<typeof LintResultSchema>

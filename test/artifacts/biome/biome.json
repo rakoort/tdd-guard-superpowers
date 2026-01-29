@@ -1,0 +1,16 @@
+{
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "style": {
+        "useConst": "error"
+      },
+      "suspicious": {
+        "noDoubleEquals": "error"
+      },
+      "correctness": {
+        "noUnusedVariables": "error"
+      }
+    }
+  }
+}
