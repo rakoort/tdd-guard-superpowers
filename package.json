@@ -1,12 +1,12 @@
 {
-  "name": "tdd-guard",
+  "name": "tdd-guard-superpowers",
   "version": "1.1.0",
-  "description": "Automated Test-Driven Development enforcement for Claude Code",
+  "description": "TDD enforcement for Claude Code using the superpowers methodology",
   "author": "Nizar Selander",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nizos/tdd-guard.git"
+    "url": "git+https://github.com/rakoort/tdd-guard-superpowers.git"
   },
   "keywords": [
     "tdd",
@@ -30,7 +30,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "tdd-guard": "dist/cli/tdd-guard.js"
+    "tdd-guard-superpowers": "dist/cli/tdd-guard.js"
   },
   "files": [
     "dist",

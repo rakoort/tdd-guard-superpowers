@@ -129,7 +129,7 @@ describe('Config', () => {
         const configWithNestedCwd = new Config()
 
         expect(configWithNestedCwd.dataDir).toBe(
-          '/project/root/.claude/tdd-guard/data'
+          '/project/root/.claude/tdd-guard-superpowers/data'
         )
       })
 

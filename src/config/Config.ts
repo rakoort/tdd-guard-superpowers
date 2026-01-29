@@ -9,9 +9,13 @@ const LINT_FILENAME = 'lint.json'
 const CONFIG_FILENAME = 'config.json'
 const INSTRUCTIONS_FILENAME = 'instructions.md'
 
-export const DEFAULT_MODEL_VERSION = 'claude-sonnet-4-0'
+export const DEFAULT_MODEL_VERSION = 'claude-sonnet-4-5-20250514'
 export const DEFAULT_CLIENT: ClientType = 'sdk'
-export const DEFAULT_DATA_DIR = path.join('.claude', 'tdd-guard', 'data')
+export const DEFAULT_DATA_DIR = path.join(
+  '.claude',
+  'tdd-guard-superpowers',
+  'data'
+)
 
 const VALID_CLIENTS = new Set<string>(['api', 'cli', 'sdk'])
 const MODEL_TYPE_TO_CLIENT: Record<string, ClientType> = {
